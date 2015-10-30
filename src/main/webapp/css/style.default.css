@@ -1,0 +1,12 @@
+input, select, textarea, button, label {
+	color: #656565;
+	font-family: 'robotoregular';
+	font-size: 14px;
+	outline: none;
+}
+
+.clear {
+	clear: both;
+	margin: 0;
+	padding: 0;
+}
