@@ -165,8 +165,10 @@
 	border-bottom: 0;
 	-webkit-border-radius: 5px 5px 0px 0px;
 	border-radius: 5px 5px 0px 0px;
-	margin-right: 0.8em;
+	margin-right: 0.2em;
 	font-size: 12px;
+	text-decoration: none;
+	
 }
 
 .ui-tabs-nav li a:hover {
@@ -176,7 +178,7 @@
 
 .ui-tabs-nav li.ui-state-active a {
 	background: #fff;
-	color: #000;
+	color: #4D7398;
 }
 
 .ui-tabs-hide {

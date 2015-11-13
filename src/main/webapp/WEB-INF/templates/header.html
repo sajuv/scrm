@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<header th:fragment="header" class="head">
+     <div class="logo floatleft" >
+	     <a href="/dashboard.htm"><img src="images/logo.png" title="IntelliCRM" height="50" width="120" /></a>
+	</div>
+	<div style="padding-left: 105px;padding-top: 25px;float: left;">
+	 <nav class="grtnav">
+			<ul>
+		      <li><a href="/dashboard.htm"  class="dashboard" id="dashboard"><i class="fa fa-home fa-2x"></i>&nbsp;Dashboard</a></li>
+			  <li><a href="/bucket.htm" class="bucket" id="bucket"><i class="fa fa-plug fa-2x"></i>&nbsp;Bucket</a></li>
+			  <li><a href="/ticket.htm" class="tickets" id="tickets"><i class="fa fa-ticket fa-2x"></i>&nbsp;Tickets</a></li>
+			  <li><a href="/crm.htm" class="crm" id="crm"><i class="fa fa-users fa-2x"></i>&nbsp;CRM</a></li>
+			  <li><a href="/analytics.htm" class="analytics" id="analytics" ><i class="fa fa-bar-chart fa-2x"></i>&nbsp;Analytics</a></li>
+			  <li><a href="/settings.htm" class="settings" id="settings" ><i class="fa fa-cogs fa-2x"></i>&nbsp;Settings</a></li>
+		  </ul>
+    </nav>
+    </div>
+   <div style="padding-right: 35px;padding-top: 15px;float: right;">
+	 <nav>
+			<ul>
+		      <li style="float:left;padding-right:20px;padding-top: 10px;"><i class="icohead fa fa-bell fa-lg"></i></li>
+		      <li style="float:left;padding-top: 10px;"><span style="color: #fff;padding-right:10px;">Mark Webber</span><i class="icohead fa fa-user fa-lg"></i></li>
+			 
+			 </ul>
+    </nav>
+    </div>
+     <script type="text/javascript" th:inline="javascript">
+   $(document).ready(function(){
+    	pagename();
+   }); 
+   
+		function pagename() {
+		var sPath = window.location.pathname;
+		
+		if(sPath.indexOf("dashboard") != -1 )
+		{
+			$('#dashboard').addClass('current');
+			return;
+		}
+		if(sPath.indexOf("bucket") != -1 )
+		{
+			$('#bucket').addClass('current');
+			return;
+		}
+		if(sPath.indexOf("tickets") != -1 )
+		{
+			$('#tickets').addClass('current');
+			return;
+		}
+		if(sPath.indexOf("crm") != -1 )
+		{
+			$('#crm').addClass('current');
+			return;
+		}
+		if(sPath.indexOf("analytics") != -1 )
+		{
+			$('#analytics').addClass('current');
+			return;
+		}
+		}
+</script>
+   </header>
+  
+  
+   </html>

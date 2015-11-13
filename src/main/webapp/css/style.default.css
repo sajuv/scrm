@@ -1,12 +1,69 @@
-input, select, textarea, button, label {
+input, select, textarea, button, label, div {
 	color: #656565;
 	font-family: 'robotoregular';
 	font-size: 14px;
 	outline: none;
 }
 
+.home {
+	background-color: #FFF;
+}
+
+
+
+.login {
+	float:left;
+	padding-bottom:40px;
+}
+
+.login  span{
+	height:25px;
+	color: #676E71;
+	font-size: 44px;
+	float: left;
+	padding-left:48%;
+	}
+	
+.login  .comment{
+	padding-left:165px;
+	padding-top	:30px;
+	}
+	
+.lgninputs{
+	padding-left:10%;
+}
+
+.lgninputs li{
+	padding-bottom:10px;
+}
+.lgninputs .inp{
+	height: 44px;
+	width: 400px;
+	border-radius:0px;
+	
+}
 .clear {
 	clear: both;
 	margin: 0;
 	padding: 0;
+}
+
+.text_center {
+	
+}
+.text_center .lgnbtn{
+	background-color: #61B0D0;
+	color: #fff;
+	height:46px;
+	width: 400px;
+	border-radius:6px;
+	font-size:22px;	
+}
+
+.floatright {
+	float: right;
+}
+
+.floatleft {
+	float: left;
 }

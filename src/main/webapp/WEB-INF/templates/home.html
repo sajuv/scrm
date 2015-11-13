@@ -1,0 +1,49 @@
+<html xmlns:th="http://www.thymeleaf.org">
+ <head>
+   <title>Admin Dashboard</title>
+   <meta charset="utf-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+   <link rel="stylesheet" href="css/style.css" />
+   <link rel="stylesheet" href="css/style.default.css" type="text/css" />
+   <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+   <link rel="stylesheet" href="css/urban.css" type="text/css" />
+   <link rel="stylesheet" href="css/jquery.ui.css" type="text/css" />
+   <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+   <script type="text/javascript" src="js/jquery-ui-1.9.2.min.js"></script>
+   <script type="text/javascript" src="js/bootstrap.min.js"></script>
+   <script>
+   /*  <![CDATA[  */
+   $(document).ready(function(){
+	  $('#submitBtn').click(function(){
+ 		  if(($('#username').val()=='admin@quinnox.com') && ($('#password').val()=='12345678'))
+		  {
+ 			 window.location = "/dashboard.htm"
+	  }
+ 		  else {
+ 			 alert("Failure");
+ 		  }
+	  });   
+   });
+   /*]]>*/  
+   </script>
+
+ </head>	
+  <body class="home">
+    <div style="padding-top:11em;padding-left:26em">
+        <div class="login">
+        	<span>IntelliCRM</span>
+        	<div class="clear"></div>
+        	<div class="comment">Now Social Media Comments will become Opportunities</div>
+        </div>
+        <div class="clear"></div>
+       <div class="lgninputs">
+       <ul class="form_wrap"  style="list-style-type:none;">
+							<li><input name="username" id="username" class="inp" type="email" tabindex="1" placeholder="Email Address" required="required" /></li>
+							<li><input name="password" id="password" class="inp" type="password" tabindex="1" placeholder="Password" required="required" /></li>
+							<li class="text_center"><input id="submitBtn" type="submit" value="Sign in" class="lgnbtn" /></li>
+						</ul>
+		</div>
+       
+   </div>
+ </body>
+</html>

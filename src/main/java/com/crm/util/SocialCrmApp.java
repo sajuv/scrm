@@ -1,15 +1,20 @@
 package com.crm.util;
 
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.data.cassandra.core.CassandraOperations;
+import org.springframework.data.cassandra.core.CassandraTemplate;
 import org.springframework.web.servlet.ViewResolver;
 import org.thymeleaf.spring4.SpringTemplateEngine;
 import org.thymeleaf.spring4.view.ThymeleafViewResolver;
 import org.thymeleaf.templateresolver.ServletContextTemplateResolver;
 import org.thymeleaf.templateresolver.TemplateResolver;
+
+import com.datastax.driver.core.Cluster;
 
 @SpringBootApplication
 @ComponentScan(basePackages={"com.crm.*"})
@@ -33,6 +38,7 @@ public class SocialCrmApp {
 
         return templateResolver;
     }
+    
  
  
    @Bean
@@ -50,6 +56,11 @@ public class SocialCrmApp {
          viewResolver.setOrder(0);
          return viewResolver;
       }
+     
+     @Bean
+		public CassandraOperations establishDBConnection(){
+			return new CassandraTemplate(Cluster.builder().addContactPoints("10.20.3.163").build().connect("icrm"));
+		}
      
 }
 

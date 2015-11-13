@@ -9,12 +9,28 @@
  * Date: Tue Jan 02 2014
  */
 th a {
-  color: #fff;
+  color: #000;
+  font-family: 'robotoregular';
+  font-size: 12;
 }
 th a:hover {
-  color: #fff;
+  color: #000;
   text-decoration: underline;
 }
+
+
+td a {
+  color: #4D7398;
+  font-family: 'robotoregular';
+  font-size: 14;
+  text-align:left;  
+}
+
+td span {
+  font-size: 14;
+   
+}
+
 
 .dynatable-search {
   float: right;
@@ -55,7 +71,7 @@ th a:hover {
 }
 
 .dynatable-active-page {
-  background: #71AF5A;
+  background: #4D7398;
   border-radius: 5px;
   color: #fff;
 }

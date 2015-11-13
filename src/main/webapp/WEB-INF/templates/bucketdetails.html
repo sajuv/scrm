@@ -1,0 +1,166 @@
+<html xmlns:th="http://www.thymeleaf.org">
+ <head>
+   <title>Bucket Details</title>
+   <meta charset="utf-8" />
+   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+   <link rel="stylesheet" href="css/style.css" />
+   <link rel="stylesheet" href="css/style.default.css" type="text/css" />
+   <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+   <link rel="stylesheet" href="css/jquery.ui.css" type="text/css" />
+   <link rel="stylesheet" href="css/jquery.dynatable.css" type="text/css" />
+      <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+	<link rel="stylesheet" type="text/css" href="css/dd.css" />
+   <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
+   <script type="text/javascript" src="js/jquery-ui-1.9.2.min.js"></script>
+   <script type="text/javascript" src="js/bootstrap.min.js"></script>
+   <script type="text/javascript" src="js/jquery.dynatable.js"></script>
+   <script src="js/jquery.dd.js" type="text/javascript"></script>
+
+   <script>
+  $(function() {
+    $( "#tabs" ).tabs();
+  });
+  </script>
+    <script language="javascript">
+		$(document).ready(function(e) {
+		try {
+		$("body select").msDropDown();
+		} catch(e) {
+		alert(e.message);
+		}
+		});
+</script>
+   </head>	
+<body style=" background-color: #F5F5F5;">
+    <div th:replace="/header :: header"></div>
+   <div id="midcontainer">
+    <div class="pagetitle">
+	    <h1>Post Details</h1>
+	     <div style="float:right;padding-right:3%">     
+	     <div style="float:left;box-shadow: #d9d9d9 1px 3px 2px;"> <select name="webmenu" id="webmenu" style="height:40px;">
+						<option value="select" disabled="disabled"  selected="selected">---Assign to a Product---</option>
+					    <option value="calendar" title="images/crbside.png">Curbside Pickup</option>
+					    <option value="shopping_cart" title="images/dump.png">Dumpsters</option>
+					    <option value="cd" title="images/recycle.png">Recycling Services</option>
+					    <option value="email" title="images/elec.png">Electronics Recycling</option>
+					    <option value="faq" title="images/med.png">Medical Waste</option>
+					 </select></div>
+					 <div style="float:left;padding-left:10px;box-shadow: #d9d9d9 1px 3px 2px;">
+					 <select name="users" id="users" style="height:40px;">
+						<option value="select" disabled="disabled"  selected="selected">---Assign to a User---</option>
+					    <option value="calendar" title="images/p1.jpg">Mark Webber</option>
+					    <option value="shopping_cart" title="images/p2.jpg">John Lewis</option>
+					    <option value="cd" title="images/p3.jpg">Christina James</option>
+					    <option value="email" title="images/p4.jpg">Sandra Thomas</option>
+					   </select>
+					 </div>  
+					 <div style="float:left;padding-left:10px;">
+					     <img src="images/delete.png" alt="Move To trash" height="25" width="25"/>
+					 </div>
+	    </div>
+    </div>
+    <div class="clear"></div>
+    <div>
+       <div style="width:56%;float:left;"> 
+		     <div class="cards" style="width:100%">
+				<div class="clear"></div>
+				<div class="floatleft" style="padding-right:2em;">
+	    		<img src="images/fbprofile.jpg" height="70" width="70"></img></div>	
+	    		<div>
+		    		<span class="profileName">Jammie Fox</span>
+		    		<div style="padding-bottom:20px;">The dumpster service in my area is horrible , could you look onto this please?</div>
+		    		<span>Source :</span><span style="color:#2C6985;">Facebook</span> 
+					<span style="color:#2C6985;padding-left:12px;">18 Oct 2015 17:45</span> 
+	    		</div>
+				
+			 </div>
+			  <div class="cards" style="width:100%">
+				   <div class="pagetitle">
+				    <h1>Responses</h1></div>
+				    	<div id="tabs">
+										
+										<ul>
+											<li><a href="#tabs-1">Conversation</a></li>
+											<li><a href="#tabs-2">Log</a></li>
+											
+										</ul>
+				 <div id="tabs-1">
+				 
+				   <div class="fmtradio">
+				       <div class="radio" style="float:left;line-height:10px;">
+					      <label style="line-height:10px;"><input type="radio" name="optradio" checked="checked" />Public Message</label>
+					    </div>
+					    <div class="radio" style="float:left;">
+					      <label style="line-height:10px;"><input type="radio" name="optradio" />Private Reply</label>
+					    </div>
+					    <div class="floatright"><input type="button" value="Load From Templates" /></div>
+					 </div>
+					 <div class="clear"></div>
+					 <div class="form-group">
+					      <label for="comment">Message:</label>
+					     <textarea rows="5" cols="180" placeholder="Describe your comments here" style="min-width: 100%"></textarea>
+					 </div>
+					 <div class="clear"></div>
+					<div class="btn-group floatright">
+					<a class="btn" href="#"><i class="fa  fa-floppy-o fa-fw"></i> Send For Approval</a>
+					 </div>
+					<div>
+					
+					
+					</div>
+				  </div>	
+				  <div id="tabs-2">
+				    <table class="table table-bordered" id="dyntable1">
+														<thead>
+															<tr>
+																<th width="24%">Entity</th>
+																<th width="18%">New Value</th>
+																<th width="13%">Old Value</th>
+																<th width="15%">Action By</th>
+																<th width="15%">Action On</th>
+															</tr>
+														</thead>
+														<tbody>
+														   <tr>
+														   		<td>Assigned Service Agent </td>
+														   		<td>John Lewis</td>
+														   		<td></td>
+														   		<td>Mark Webber</td>
+														   		<td>12 Oct 21:13</td>
+														   </tr>
+														   <tr>
+														   		<td>Assigned Product Line</td>
+														   		<td>Curbside PickUp</td>
+														   		<td>Dumpsters</td>
+														   		<td>Mark Webber</td>
+														   		<td>12 Oct 21:12</td>
+														   </tr>
+														   <tr>
+														   		<td>Posted Public Comments</td>
+														   		<td>Could you please give us the account number </td>
+														   		<td></td>
+														   		<td>Mark Webber</td>
+														   		<td>12 Oct 21:11</td>
+														   </tr>
+														</tbody>
+					</table>
+				  </div>
+				  </div>
+	 	</div>
+	 </div>
+		      <div class="cards" Style="width:40%;float:right;margin-right:37px;">
+		         <div Style="float:left;">
+		             <img src="images/wm.png" height="40" width="40"></img>
+		             <span style="color:#2C6985;font-size:12px;float:right;line-height:40px;">Waste Management</span></div>
+		           	  <span class="floatright" style="float:right;line-height:40px;font-size:12px;padding-right:20px;">17 Oct 2015 17:45</span>
+					<div class="floatleft">
+	    			<img src="images/wmpost.jpg" height="370" width="100%"></img></div>
+				<div class="floatleft">You may have seen our natural gas powered trucks in your neighborhood. These trucks cut smog-producing nitrogen oxide emissions by up to 50 percent.</div>
+			
+			 </div>
+	 </div>
+	<div class="clear"></div>
+	
+	  </div>
+ </body>
+</html>

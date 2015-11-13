@@ -5,15 +5,20 @@
    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
    <link rel="stylesheet" href="css/style.css" />
    <link rel="stylesheet" href="css/style.default.css" type="text/css" />
-   <link rel="stylesheet" href="css/bootstrap.css" type="text/css" />
+   <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
    <link rel="stylesheet" href="css/jquery.ui.css" type="text/css" />
    <link rel="stylesheet" href="css/jquery.dynatable.css" type="text/css" />
-   <script type="text/javascript" src="js/jquery-1.7.2.min.js"></script>
+   <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+   <script type="text/javascript" src="js/jquery-1.11.3.min.js"></script>
    <script type="text/javascript" src="js/jquery-ui-1.9.2.min.js"></script>
    <script type="text/javascript" src="js/bootstrap.min.js"></script>
    <script type="text/javascript" src="js/jquery.dynatable.js"></script>
+	<script type="text/javascript" src="js/highcharts.js"></script>
+	<script type="text/javascript" src="js/exporting.js"></script>
+	<script type="text/javascript" src="js/bootstrap-progressbar.min.js"></script>
    <script type="text/javascript">
    $(document).ready(function(){
+	     
 	   $('.circle').each(function () {
 		    $(this).prop('Counter',0).animate({
 		        Counter: $(this).text()
@@ -30,163 +35,289 @@
    <script>
   $(function(){
     $("#dyntable").dynatable();
+    
+    $("#dyntable1").dynatable();
+    
   })
   </script>
+  <script>
+  $.dynatableSetup({
+	  features: {
+		    paginate: true,
+		    sort: false,
+		    pushState: true,
+		    search: true,
+		    recordCount: true,
+		    perPageSelect: false
+		  },
+   });
+  </script>
+  
+  <script>
+  /*  <![CDATA[  */
+  $(function() {
+    $( "#tabs" ).tabs();
+  });
+  
+  $(function () {
+	    $('#container').highcharts({
+	        chart: {
+	            type: 'bar'
+	        },
+	        title: {
+	            text: 'Social Media Impressions '
+	        },
+	        
+	        xAxis: {
+	            categories: ['Facebook', 'LinkedIn', 'Twitter'],
+	            title: {
+	                text: null
+	            }
+	        },
+	        yAxis: {
+	            min: 0,
+	            title: {
+	                text: 'Population (millions)',
+	                align: 'high'
+	            },
+	            labels: {
+	                overflow: 'justify'
+	            }
+	        },
+	        tooltip: {
+	            valueSuffix: ''
+	        },
+	        plotOptions: {
+	            bar: {
+	                dataLabels: {
+	                    enabled: true
+	                }
+	            }
+	        },
+	        legend: {
+	            layout: 'vertical',
+	            align: 'right',
+	            verticalAlign: 'top',
+	            x: -40,
+	            y: 80,
+	            floating: true,
+	            borderWidth: 1,
+	            backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+	            shadow: true
+	        },
+	        credits: {
+	            enabled: false
+	        },
+	        series: [{
+	            name: 'Posts/Tweets',
+	            data: [7, 7, 7]
+	        }, {
+	            name: 'Views',
+	            data: [1033, 756, 947]
+	        }, {
+	            name: 'Comments',
+	            data: [252, 84, 50]
+	        }]
+	    });
+	});
+  /*]]>*/  
+  
+
+		$(document).ready(function(e){
+		  $('#fetch').click(function () {
+			  /* $( ".progress" ).css( "width", "0%" ).attr( "aria-valuenow", 0); */
+			   $('#social').css( "width", "0%" ).attr( "aria-valuenow", 0);
+			   $('#senti').css( "width", "0%" ).attr( "aria-valuenow", 0);
+			   $('#lrefresh').css( "width", "0%" ).attr( "aria-valuenow", 0);
+			  $('#social').progressbar({transition_delay: 2000,display_text: 'fill'});
+			  $('#senti').progressbar({transition_delay: 4000,display_text: 'fill'});
+			  $('#lrefresh').progressbar({transition_delay: 6000,display_text: 'fill'});
+			});
+		  
+		});	  		
+		
+
+  </script>
+  
+  
+  
  </head>	
-<body>
-   <header class="head">
-     <div class="logo">
-	    <!-- <span class="logoTxt">Social CRM</span> -->
-	    <img src="images/image.png" title="IntelliCRM" height="30" width="120" />
-	</div>
-   </header>
-   
+<body style=" background-color: #F5F5F5;">
+    <div th:replace="/header :: header"></div>
    <div id="midcontainer">
     <div class="pagetitle">
 	    <h1>Admin Dashboard</h1>
-	    <div class="floatright" style="padding-top:1em;padding-right:4em;">
-	    	<img src="images/refresh.svg" title="Refresh All" height="20" width="20"></img></div>
+	    <div  class="floatright" style="padding-right:60px;padding-top:1em;padding-bottom:1em;">
+	    	  <a class="btn btn-info" style="height:36px;" data-toggle="modal" data-target="#myModal" id="fetch">
+  					<i class="fa fa-database fa-lg"></i> Fetch Stream</a>   
+	        </div>	
     </div>
+    <div class="clear"></div>
     <div>
 		     <div class="cards">
-				<span class="title">Tickets</span>
+				<span class="subtitle">Tickets</span>
 				<br clear="all"/>
 				<div class="statcounts padleft">
 					<div  style="text-align:center;"><div class="circle">71</div></div>
-					<div>Bucket</div>
+					<span>Bucket</span>
 				</div>
 				<div class="statcounts">
 					<div  style="text-align:center;"><div class="circle">21</div></div>
-					<div>Open</div>
+					<span>Open</span>
 				</div>
 				<div class="statcounts">
 					<div  style="text-align:center;"><div class="circle">22</div></div>
-					<div>Assigned</div>
+					<span>Assigned</span>
 				</div>
 			 </div>
 		      <div class="cards">
-				<span class="title">Sentiment</span>
+				<span class="subtitle">Sentiment</span>
 				<br clear="all"/>
 				<div class="statcounts padleft">
 				<div style="text-align:center;"><div class="circle">7</div></div>
-					<div>Facebook</div>
+					<span>Facebook</span>
 				</div>
 				<div class="statcounts">
 					<div  style="text-align:center;"><div class="circle">5</div></div>
-					<div>Twitter</div>
+					<span>Twitter</span>
 				</div>
 				<div class="statcounts">
 					<div  style="text-align:center;"><div class="circle">8</div></div>
-					<div>LinkenIn</div>
+					<span>LinkenIn</span>
 				</div>
 			 </div>
 			 <div class="cards">
-				<span class="title">Leads</span>
+				<span class="subtitle">Leads</span>
 				<br clear="all"/>
 				<div class="statcounts padleft">
 					<div  style="text-align:center;"><div class="circle">65</div></div>
-					<div>Un-Assigned</div>
+					<span>Un-Assigned</span>
 				</div>
 				<div class="statcounts">
 					<div  style="text-align:center;"><div class="circle">21</div></div>
-					<div>Leads</div>
+					<span>Leads</span>
 				</div>
 				<div class="statcounts">
 					<div  style="text-align:center;"><div class="circle">22</div></div>
-					<div>Opportunities</div>
+					<span>Opportunities</span>
 				</div>
 			 </div>
 	 </div>
 	<div class="clear"></div>
-	 <div class="cards" style="width:61%">
+	 <div class="cards" style="width:64%">
 	   <div class="pagetitle">
-	    <h1>IntelliSense Bucket</h1></div>
+	    <h1>Filtered Bucket</h1></div>
+	    	<div id="tabs" class="doublebottom_margin borderbottom">
+							
+							<ul>
+								<li><a href="#tabs-1">Tickets ( <span th:text= "${#lists.size(bucketTickets)}"></span> ) </a></li>
+								<li><a href="#tabs-2">Leads ( <span th:text="${#lists.size(bucketLeads)}"></span> )
+								</a></li>
+								
+							</ul>
+	 <div id="tabs-1">
 	    <table class="table table-bordered" id="dyntable">
 											<thead>
 												<tr>
-													<th width="4%">Source</th>
-													<th width="38%">Description</th>
-													<th width="13%">Posted on</th>
-													<th width="15%">Actions</th>
+													<th width="4%" class="theaders">Source</th>
+													<th width="38%" class="theaders">Description</th>
+													<th width="13%" class="theaders">Posted on</th>
+													<th width="15%" class="theaders">Actions</th>
 												</tr>
 											</thead>
 											<tbody>
-											   <tr>
-											   		<td><img src="images/fb.png"  title="facebook" height="30" width="30"/></td>
-											   		<td>The dumpster Service is so bad in my area</td>
-											   		<td>12-Oct15 17:35</td>
-											   		<td>Test</td>
+											  <tr th:each="bticket : ${bucketTickets}">
+												<td>
+												<img th:if="${bticket.source} == 'facebook' " src="images/fb.png"  title="facebook" height="20" width="20"/>
+												<img th:if="${bticket.source} == 'Twitter' " src="images/twit.png"  title="twitter" height="20" width="20"/>
+												<img th:if="${bticket.source} == 'linkedin' " src="images/linkedin.png"  title="linkedIn" height="20" width="20"/> 
+												
+												</td>
+												<td><a href="/bucketdetails.htm"><span th:text="${bticket.description}"></span></a></td>
+												<td><span th:text="${bticket.postedOn}"></span></td>
+												<td><img src="images/delete.png"  title="delete" height="20" width="20"/></td>
 											   </tr>
-											   <tr>
-											   		<td><img src="images/linkedin.png"  title="facebook" height="30" width="30"/></td>
-											   		<td>The cans are never kept back in their places</td>
-											   		<td>12-Oct15 18:15</td>
-											   		<td>Test</td>
-											   </tr>
-											   <tr>
-											   		<td><img src="images/twit.png"  title="facebook" height="30" width="30"/></td>
-											   		<td>What a pathetic service , grow up guys</td>
-											   		<td>12-Oct15 19:31</td>
-											   		<td>Test</td>
-											   </tr>
-											      <tr>
-											   		<td><img src="images/fb.png"  title="facebook" height="20" width="20"/></td>
-											   		<td>The dumpster Service is so bad in my area</td>
-											   		<td>12-Oct15 17:35</td>
-											   		<td>Test</td>
-											   </tr>
-											   <tr>
-											   		<td><img src="images/linkedin.png"  title="facebook" height="20" width="20"/></td>
-											   		<td>The cans are never kept back in their places</td>
-											   		<td>12-Oct15 18:15</td>
-											   		<td>Test</td>
-											   </tr>
-											   <tr>
-											   		<td><img src="images/twit.png"  title="facebook" height="20" width="20"/></td>
-											   		<td>What a pathetic service , grow up guys</td>
-											   		<td>12-Oct15 19:31</td>
-											   		<td>Test</td>
-											   </tr>
-											       <tr>
-											   		<td><img src="images/fb.png"  title="facebook" height="20" width="20"/></td>
-											   		<td>The dumpster Service is so bad in my area</td>
-											   		<td>12-Oct15 17:35</td>
-											   		<td>Test</td>
-											   </tr>
-											   <tr>
-											   		<td><img src="images/linkedin.png"  title="facebook" height="20" width="20"/></td>
-											   		<td>The cans are never kept back in their places</td>
-											   		<td>12-Oct15 18:15</td>
-											   		<td>Test</td>
-											   </tr>
-											   <tr>
-											   		<td><img src="images/twit.png"  title="facebook" height="20" width="20"/></td>
-											   		<td>What a pathetic service , grow up guys</td>
-											   		<td>12-Oct15 19:31</td>
-											   		<td>Test</td>
-											   </tr>
-											       <tr>
-											   		<td><img src="images/fb.png"  title="facebook" height="20" width="20"/></td>
-											   		<td>The dumpster Service is so bad in my area</td>
-											   		<td>12-Oct15 17:35</td>
-											   		<td>Test</td>
-											   </tr>
-											   <tr>
-											   		<td><img src="images/linkedin.png"  title="facebook" height="20" width="20"/></td>
-											   		<td>The cans are never kept back in their places</td>
-											   		<td>12-Oct15 18:15</td>
-											   		<td>Test</td>
-											   </tr>
-											   <tr>
-											   		<td><img src="images/twit.png"  title="facebook" height="20" width="20"/></td>
-											   		<td>What a pathetic service , grow up guys</td>
-											   		<td>12-Oct15 19:31</td>
-											   		<td>Test</td>
-											   </tr>
-											   
 											</tbody>
 		</table>
+	  </div>	
+	  <div id="tabs-2">
+	    <table class="table table-bordered" id="dyntable1">
+											<thead>
+												<tr>
+													<th width="4%" class="theaders">Source</th>
+													<th width="38%" class="theaders">Description</th>
+													<th width="13%" class="theaders">Posted on</th>
+													<th width="15%" class="theaders">Actions</th>
+												</tr>
+											</thead>
+											<tbody>
+											   <tr th:each="blead : ${bucketLeads}">
+												<td>
+												<img th:if="${blead.source} == 'facebook' " src="images/fb.png"  title="facebook" height="20" width="20"/>
+												<img th:if="${blead.source} == 'twitter' " src="images/twit.png"  title="twitter" height="20" width="20"/>
+												<img th:if="${blead.source} == 'linkedin' " src="images/linkedin.png"  title="linkedIn" height="20" width="20"/> 
+												
+												</td>
+												<td><a href="/bucketdetails.htm"><span th:text="${blead.description}"></span></a></td>
+												<td><span th:text="${blead.postedOn}"></span></td>
+												<td><img src="images/delete.png"  title="delete" height="20" width="20"/></td>
+											   </tr>
+											</tbody>
+		</table>
+	  </div>
+	  </div>
 	 </div>
+	
+	  <div class="cards" style="width:31%">
+	     <div class="subtitle">Social Media Updates</div>
+	     <div>	        
+				<br clear="all"/>
+				<select class="floatright drop">
+					  <option value="This Week">This Week</option>
+					  <option value="Last 2 Weeks">Last 2 Weeks</option>
+					  <option value="This Month">last 30 Days</option>
+					  <option value="last 2 Months">last 60 Days Month</option>
+				</select>
+		 </div>		
+		 <br clear="all"/>
+			<div class="clear"></div>	
+		<div id="container" style="min-width: 310px; max-width: 400px; height: 300px; margin: 0 auto"></div>
+	  </div>
    </div>
+   <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Sentiment Processing</h4>
+        </div>
+        <div class="modal-body">
+          <div style="padding-bottom:15px;color:#163543">Fetching Social Media Posts and Comments</div>
+          <div class="progress">
+		    <div id="social"  class="progress-bar progress-bar-striped" role="progressbar" data-transitiongoal="100">
+		    </div>
+		  </div>
+		  
+		  <div style="padding-bottom:15px;color:#163543">Analyzing the Sentiments of the comments</div>
+          <div class="progress">
+		    <div id="senti"  class="progress-bar progress-bar-info" role="progressbar" data-transitiongoal="100">
+		    </div>
+		  </div>
+		  
+		  <div style="padding-bottom:15px;color:#163543">Refreshing the Bucket List</div>
+          <div class="progress">
+		    <div id="lrefresh"  class="progress-bar  progress-bar-success" role="progressbar" data-transitiongoal="100">
+		    </div>
+		  </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
+  </div>
  </body>
 </html>
